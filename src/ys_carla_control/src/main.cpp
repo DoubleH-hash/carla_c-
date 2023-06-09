@@ -6,8 +6,14 @@
 #include <sstream>
 #include <memory>
 #include <std_msgs/String.h>
+
 #include <carla_msgs/CarlaEgoVehicleControl.h>
 #include <carla_msgs/CarlaEgoVehicleStatus.h>
+
+#include <carla_msgs/SpawnObject.h>
+#include <carla_msgs/SpawnObjectRequest.h>
+#include <carla_msgs/SpawnObjectResponse.h>
+
 #include <tf2/convert.h>
 #include <tf/transform_broadcaster.h>
 
@@ -15,11 +21,13 @@
 #include "ys_ros_msgs/Location.h"
 #include "ys_ros_msgs/VehicleStatus.h"
 
+
 using namespace std;
 ros::Publisher control_pub;
+ros::Publisher initial_pub;
 
-double vspeed = 1.0;   //km/h
-double vangular = 0.0;
+double vspeed = 3.0;   //km/h
+double vangular = 0;   //左转为负值  右转为正值
 
 double vspeedfb = 0.0;
 double pid_throttle_delta = 0.0;
@@ -54,6 +62,24 @@ void PubilshControl(float throttle, float angle, float brake, int32_t gear)
     command.gear = gear;
 
     control_pub.publish(command);
+}
+
+void PubilshInitial()
+{
+    geometry_msgs::Pose pose;
+
+    pose.orientation.x = 0.0;
+    pose.orientation.y = 0.0;
+    pose.orientation.z = -0.005207524779596642;
+    pose.orientation.w = 0.9999864407509084;
+
+    pose.position.x = -13.339421272277832;
+    pose.position.y = 61.05009078979492;
+    pose.position.z = 0.0013123702956363559;
+
+    pose.position.z += 2;    //使车辆悬空
+
+    initial_pub.publish(pose);
 }
 
 void PID_init()
@@ -94,6 +120,7 @@ void statusCallback(const carla_msgs::CarlaEgoVehicleStatus::ConstPtr &status)
     throttle_pid += pid_throttle_delta;
     //油门最小值为 0
     if(pid_throttle_delta < 0) throttle_pid = 0;
+    if(throttle_pid > 1) throttle_pid = 1;
 
     printf("[ys_control] statusCallback ---vspeed:%f,vspeedfb:%f,throttle_pid:%f,pid_throttle_delta:%f \n",
            vspeed, vspeedfb, throttle_pid, pid_throttle_delta);
@@ -104,19 +131,29 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "ys_carla_control");
     ros::NodeHandle nh;
     ros::Subscriber control_sub = nh.subscribe("cmd_vel", 20, controlCallback);
+
     ros::Subscriber status_sub = nh.subscribe("/carla/ego_vehicle/vehicle_status", 20, statusCallback); // 订阅carla的车速等反馈信息
 
-    control_pub = nh.advertise<carla_msgs::CarlaEgoVehicleControl>("/carla/ego_vehicle/vehicle_control_cmd", 10);
+    control_pub = nh.advertise<carla_msgs::CarlaEgoVehicleControl>("/carla/ego_vehicle/vehicle_control_cmd", 10);  //发布carla的控制信息
+
+    initial_pub = nh.advertise<geometry_msgs::Pose>("/carla/ego_vehicle/control/set_transform", 10);  //发布carla中小车的初始位置
 
     PID_init();
 
     ros::Rate loop_rate(20);
 
+    ros::Duration(1).sleep();
+
+    for(int i = 0; i < 5; i++){
+        PubilshInitial();
+    }
+
+    ros::Duration(1).sleep();
+
     while (ros::ok())
     {
 
         PubilshControl(throttle_pid, vangular, 0, 1);
-
 
 
         ros::spinOnce();
