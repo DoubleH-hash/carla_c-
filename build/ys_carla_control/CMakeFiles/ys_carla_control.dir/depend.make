@@ -3,10 +3,14 @@
 
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/CarlaEgoVehicleControl.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/CarlaEgoVehicleStatus.h
+ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObject.h
+ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObjectRequest.h
+ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObjectResponse.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/Location.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/VehicleCMD.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/VehicleStatus.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /home/omen/ros-carla/my-carla-ros-project/src/ys_carla_control/src/main.cpp
+ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /opt/ros/noetic/include/diagnostic_msgs/KeyValue.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /opt/ros/noetic/include/geometry_msgs/Accel.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h

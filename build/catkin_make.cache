@@ -1,2 +1,2 @@
-ys_carla_control:ys_carla_location:ys_ros_msgs
--DCATKIN_WHITELIST_PACKAGES=ys_carla_control -DCATKIN_DEVEL_PREFIX=/home/omen/ros-carla/my-carla-ros-project/devel -DCMAKE_INSTALL_PREFIX=/home/omen/ros-carla/my-carla-ros-project/install -G Unix Makefiles
+ys_carla_collect_point:ys_carla_control:ys_carla_location:ys_carla_map:ys_carla_pp_follow:ys_ros_msgs
+-DCATKIN_DEVEL_PREFIX=/home/omen/ros-carla/my-carla-ros-project/devel -DCMAKE_INSTALL_PREFIX=/home/omen/ros-carla/my-carla-ros-project/install -G Unix Makefiles

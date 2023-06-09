@@ -4,10 +4,14 @@
 ys_carla_control/CMakeFiles/ys_carla_control.dir/src/main.cpp.o
  /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/CarlaEgoVehicleControl.h
  /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/CarlaEgoVehicleStatus.h
+ /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObject.h
+ /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObjectRequest.h
+ /home/omen/carla-ros-bridge/catkin_ws/devel/.private/carla_msgs/include/carla_msgs/SpawnObjectResponse.h
  /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/Location.h
  /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/VehicleCMD.h
  /home/omen/ros-carla/my-carla-ros-project/devel/include/ys_ros_msgs/VehicleStatus.h
  /home/omen/ros-carla/my-carla-ros-project/src/ys_carla_control/src/main.cpp
+ /opt/ros/noetic/include/diagnostic_msgs/KeyValue.h
  /opt/ros/noetic/include/geometry_msgs/Accel.h
  /opt/ros/noetic/include/geometry_msgs/Point.h
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h
