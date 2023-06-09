@@ -1,0 +1,8 @@
+prefix=/home/omen/ros-carla/my-carla-ros-project/install
+
+Name: ys_carla_location
+Description: Description of ys_carla_location
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

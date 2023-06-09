@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/omen/ros-carla/my-carla-ros-project/devel/setup.sh

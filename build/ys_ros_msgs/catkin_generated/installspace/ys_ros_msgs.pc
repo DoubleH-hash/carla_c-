@@ -1,0 +1,8 @@
+prefix=/home/omen/ros-carla/my-carla-ros-project/install
+
+Name: ys_ros_msgs
+Description: Description of ys_ros_msgs
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs geometry_msgs

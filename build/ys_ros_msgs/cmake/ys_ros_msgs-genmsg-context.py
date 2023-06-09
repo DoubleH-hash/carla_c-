@@ -1,0 +1,11 @@
+# generated from genmsg/cmake/pkg-genmsg.context.in
+
+messages_str = "/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/AprilTagDetection.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/AprilTagDetectionArray.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/CarToServer.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/Lane.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/LaneDetection.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/LaneDetectionArray.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/LanePlan.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/Location.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/Map.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/PointXYA.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VehicleCMD.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VehicleFeed.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VehicleLight.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VehicleStatus.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/Velocity.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VisionDetection.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/VisionDetectionArray.msg;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg/vehicle_info.msg"
+services_str = "/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/srv/getLaneById.srv;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/srv/laneFinish.srv;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/srv/switchLane.srv"
+pkg_name = "ys_ros_msgs"
+dependencies_str = "std_msgs;geometry_msgs"
+langs = "gencpp;geneus;genlisp;gennodejs;genpy"
+dep_include_paths_str = "ys_ros_msgs;/home/omen/ros-carla/my-carla-ros-project/src/ys_ros_msgs/msg;std_msgs;/opt/ros/noetic/share/std_msgs/cmake/../msg;geometry_msgs;/opt/ros/noetic/share/geometry_msgs/cmake/../msg"
+PYTHON_EXECUTABLE = "/usr/bin/python3"
+package_has_static_sources = '' == 'TRUE'
+genmsg_check_deps_script = "/opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py"
