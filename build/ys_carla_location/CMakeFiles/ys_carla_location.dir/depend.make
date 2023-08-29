@@ -79,6 +79,9 @@ ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noet
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/ros/wall_timer.h
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/ros/wall_timer_options.h
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/rosconsole/macros_generated.h
+ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/sensor_msgs/Imu.h
+ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/sensor_msgs/NavSatFix.h
+ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/sensor_msgs/NavSatStatus.h
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/std_msgs/Header.h
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/std_msgs/String.h
 ys_carla_location/CMakeFiles/ys_carla_location.dir/src/main.cpp.o: /opt/ros/noetic/include/tf/LinearMath/Matrix3x3.h

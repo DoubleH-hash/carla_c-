@@ -64,7 +64,7 @@ void PubilshControl(float throttle, float angle, float brake, int32_t gear)
     control_pub.publish(command);
 }
 
-void PubilshInitial()
+void PubilshInitial()   //出生点
 {
     geometry_msgs::Pose pose;
 

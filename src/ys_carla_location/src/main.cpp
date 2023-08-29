@@ -27,6 +27,40 @@ float ins_pitch,ins_roll,ins_yaw;
 float acc_x,acc_y,acc_z;
 float gyro_x,gyro_y,gyro_z;
 
+unsigned char pub_flag_gnss = 0;
+unsigned char pub_flag_odm = 0;
+
+struct Quaternion {
+    double w, x, y, z;
+};
+ 
+struct EulerAngles {
+    double roll, pitch, yaw;
+};
+ 
+EulerAngles ToEulerAngles(Quaternion q) {
+    EulerAngles angles;
+ 
+    // roll (x-axis rotation)
+    double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+    double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+    angles.roll = std::atan2(sinr_cosp, cosr_cosp);
+ 
+    // pitch (y-axis rotation)
+    double sinp = 2 * (q.w * q.y - q.z * q.x);
+    if (std::abs(sinp) >= 1)
+        angles.pitch = std::copysign(M_PI / 2, sinp); 
+    else
+        angles.pitch = std::asin(sinp);
+ 
+    // yaw (z-axis rotation)
+    double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+    double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+    angles.yaw = std::atan2(siny_cosp, cosy_cosp);
+ 
+    return angles;
+}
+
 void PubilshLocation()
 {
     ys_ros_msgs::Location loc;
@@ -76,18 +110,33 @@ void gnssCallback(const sensor_msgs::NavSatFix::ConstPtr &p)
    ins_latitude = p->latitude;
    ins_longtitude = p->longitude;
    ins_altitude = p->altitude;
+
+   printf("[gnssCallback]:latitude:%f longtitude:%f altitude:%f\n", ins_latitude, ins_longtitude, ins_altitude);
+   pub_flag_gnss = 1;
 }
 
 void odometryCallback(const nav_msgs::Odometry::ConstPtr &p)
 {
-    //需要将四周加速度解算为欧拉角
-    p->pose.pose.orientation.x;
-    p->pose.pose.orientation.y;
-    p->pose.pose.orientation.z;
-    p->pose.pose.orientation.w;
+    Quaternion rotation;
+    EulerAngles eulerAng;
+    //需要将四轴加速度解算为欧拉角
+    rotation.x = p->pose.pose.orientation.x;
+    rotation.y = p->pose.pose.orientation.y;
+    rotation.z = p->pose.pose.orientation.z;
+    rotation.w = p->pose.pose.orientation.w;
+
+    eulerAng = ToEulerAngles(rotation);
+
+    ins_pitch = eulerAng.pitch;
+    ins_roll = eulerAng.roll;
+    ins_yaw = eulerAng.yaw;
 
     gaussX = p->pose.pose.position.x;
-    gaussX = p->pose.pose.position.y;
+    gaussY = p->pose.pose.position.y;
+
+    printf("[odometryCallback]gaussX:%0.2f gaussY:%0.2f,orientation:{%0.4f %0.4f %0.4f %0.4f},ins_pitch:%0.2f ins_roll:%0.2f ins_yaw:%0.2f \n", 
+                                                                        gaussX, gaussY,rotation.x, rotation.y, rotation.z, rotation.w, ins_pitch, ins_roll, ins_yaw);
+    pub_flag_odm ++;
 }
 
 int main(int argc, char **argv)
@@ -96,20 +145,24 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
    
    //订阅GPS信息 并转发
-   ros::Subscriber control_sub = nh.subscribe("/carla/ego_vehicle/gnss", 20, gnssCallback);
-   //
-    ros::Subscriber control_sub = nh.subscribe("/carla/ego_vehicle/odometry", 20, odometryCallback);
+   ros::Subscriber gnss_sub = nh.subscribe("/carla/ego_vehicle/gnss", 20, gnssCallback);
+   //订阅姿态等信息
+    ros::Subscriber odometry_sub = nh.subscribe("/carla/ego_vehicle/odometry", 20, odometryCallback);
 
-   location_pub = nh.advertise<ys_ros_msgs::Location>("/ys_carla_location/Location", 10);
+   location_pub = nh.advertise<ys_ros_msgs::Location>("/ys_ros_msgs/Location", 10);
 
 
     ros::Rate loop_rate(20);
 
     while (ros::ok())
     {
+        if(pub_flag_odm && pub_flag_gnss){
 
+            PubilshLocation();
+            pub_flag_odm = 0;
+            pub_flag_gnss = 0;
+        }
     
-
         ros::spinOnce();
         loop_rate.sleep();
     }

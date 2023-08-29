@@ -16,14 +16,19 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf2
   ys_ros_msgs
+  pcl_ros
+  pcl_conversions
 )
 
+find_package(PCL REQUIRED)
+find_package(OpenCV REQUIRED)
 
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ys_control
 #  CATKIN_DEPENDS carla_msgs roscpp sensor_msgs std_msgs
 #  DEPENDS system_lib
+CATKIN_DEPENDS roscpp sensor_msgs pcl_ros
 )
 
 ###########
